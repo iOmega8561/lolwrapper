@@ -17,12 +17,7 @@ function shortcuts {
 		StartupNotify=true
 		Icon=$here/icons/client.png
 		StartupWMClass=leagueclientux.exe
-		Actions=setup;winecfg
-		
-		[Desktop Action setup]
-		Name=Reinstall
-		Name[it]=Reinstalla
-		Exec=$wrapper
+		Actions=winecfg
 		
 		[Desktop Action winecfg]
 		Name=Configure
