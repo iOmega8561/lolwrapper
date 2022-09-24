@@ -133,7 +133,7 @@ $here/bin/wget --directory-prefix=$gamepath https://lol.secure.dyn.riotcdn.net/c
 sleep 1
 
 echo "90" ; sleep 1
-echo "# Creating desktop shortcuts\n"
+echo "# Setting up launcher shortcuts\n"
 mkdir -p $HOME/.local/share/icons
 cp $here/icons/* $HOME/.local/share/icons/
 cp $here/scripts/launcher.sh $gamepath/launcher.sh
