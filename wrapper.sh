@@ -12,26 +12,31 @@ function shortcuts {
 	tee $HOME/.local/share/applications/league/client.desktop <<- EOF
 		[Desktop Entry]
 		Name=League of Legends
-		Exec=env WINEPREFIX=$WINEPREFIX $gamepath/lutris-ge-lol/bin/wine start /unix $WINEPREFIX/dosdevices/c:/Riot\ Games/Riot\ Client/RiotClientServices.exe --launch-product=league_of_legends --launch-patchline=live
+		Exec=$gamepath/launcher.sh launch
 		Type=Application
 		StartupNotify=true
-		Icon=$here/icons/client.png
+		Icon=league-of-legends
 		StartupWMClass=leagueclientux.exe
-		Actions=winecfg
+		Actions=winecfg;cache
 		
 		[Desktop Action winecfg]
 		Name=Configure
 		Name[it]=Configura
-		Exec=env WINEPREFIX=$WINEPREFIX $gamepath/lutris-ge-lol/bin/winecfg
+		Exec=$gamepath/launcher.sh winecfg
+
+		[Desktop Action cache]
+		Name=Delete cache
+		Name[it]=Pulisci cache
+		Exec=$gamepath/launcher.sh delcache
 	EOF
 	
 	tee $HOME/.local/share/applications/league/game.desktop <<- EOF
 		[Desktop Entry]
 		Name=League of Legends
-		Exec=env WINEPREFIX=$WINEPREFIX $gamepath/lutris-ge-lol/bin/wine start /unix $WINEPREFIX/dosdevices/c:/Riot\ Games/League\ of\ Legends/League\ of \Legends.exe
+		Exec=$gamepath/launcher.sh
 		Type=Application
 		StartupNotify=true
-		Icon=$here/icons/game.png
+		Icon=summoners-rift
 		NoDisplay=true
 		StartupWMClass=league of legends.exe
 	EOF
@@ -129,6 +134,9 @@ sleep 1
 
 echo "90" ; sleep 1
 echo "# Creating desktop shortcuts\n"
+mkdir -p $HOME/.local/share/icons
+cp $here/icons/* $HOME/.local/share/icons/
+cp $here/scripts/launcher.sh $gamepath/launcher.sh
 shortcuts
 sleep 1
 
